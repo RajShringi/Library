@@ -25,5 +25,20 @@ function addBookToLibrary(book) {
   myLibrary.push(book);
 }
 
+function showBook() {
+  tableBody.innerHTML += myLibrary
+    .map((book) => {
+      return `<tr>
+          <td>${book.title}</td>
+          <td>${book.author}</td>
+          <td>${book.pages}</td>
+          <td>${book.status}</td>
+        </tr>`;
+    })
+    .join("");
+}
+
 addBookToLibrary(hobbit);
 addBookToLibrary(atomicHabit);
+
+showBook();
