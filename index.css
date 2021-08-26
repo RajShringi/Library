@@ -7,18 +7,21 @@
 
 :root {
   --primary-color: #fa4251;
+  --secondary-color: #ffebed;
   --background-body: #d1d1d1;
+  --hover-color: #f95462;
+  --text-color: #4a4a4d;
 }
 
 body {
   background: var(--background-body);
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
 }
 
 table {
   border-collapse: separate;
   border-spacing: 0;
-  color: #4a4a4d;
-  font-family: "Poppins", sans-serif;
 }
 
 th,
@@ -37,7 +40,7 @@ tbody {
 }
 
 tbody tr:nth-child(even) {
-  background: #ffebed;
+  background: var(--secondary-color);
 }
 
 thead {
@@ -59,4 +62,51 @@ th:last-child {
   width: 900px;
   max-width: 100%;
   margin: 0 auto;
+  text-align: center;
+  display: grid;
+  place-items: center;
+}
+
+.btn {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 1em;
+  border: 0;
+  border-radius: 5px;
+  margin: 1em 0;
+  transform: scale(1);
+  transition: transform 400 ease;
+}
+
+.btn:hover {
+  background: var(--hover-color);
+  transform: scale(1.1);
+}
+
+/* Form */
+.form-container {
+  width: 600px;
+  max-width: 100%;
+  border-radius: 0.5em;
+  padding: 1em;
+  background: #fff;
+}
+.add-book-form {
+  background: #fff;
+  padding: 1em;
+  font-size: 0.9rem;
+  text-align: left;
+}
+.add-book-form input {
+  width: 100%;
+  padding: 0.5em 0.3em;
+  background: #fff;
+  border: 1px solid var(--background-body);
+  margin: 0;
+  font-size: 0.9rem;
+}
+.add-book-form label {
+  margin-bottom: 1em;
+  display: block;
+  margin-bottom: 0.5em;
 }

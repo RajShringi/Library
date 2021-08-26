@@ -15,9 +15,15 @@ class Book {
 
 let hobbit = new Book("Hobbit", "Raj Shringi", "200", "read");
 let atomicHabit = new Book(
-  "atomic habits",
+  "Atomic habits",
   "Raj Shringi",
   "250",
+  "not read yet"
+);
+let theLordOfTheRings = new Book(
+  "The lord of the rings",
+  "Raj Shringi",
+  "550",
   "not read yet"
 );
 
@@ -40,5 +46,6 @@ function showBook() {
 
 addBookToLibrary(hobbit);
 addBookToLibrary(atomicHabit);
+addBookToLibrary(theLordOfTheRings);
 
 showBook();
