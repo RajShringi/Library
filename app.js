@@ -1,5 +1,6 @@
 const myLibrary = [];
 const tableBody = document.querySelector(".table-body");
+const bookForm = document.querySelector(".add-book-form");
 
 class Book {
   constructor(title, author, pages, status) {
@@ -13,26 +14,25 @@ class Book {
   }
 }
 
-let hobbit = new Book("Hobbit", "Raj Shringi", "200", "read");
-let atomicHabit = new Book(
-  "Atomic habits",
-  "Raj Shringi",
-  "250",
-  "not read yet"
-);
-let theLordOfTheRings = new Book(
-  "The lord of the rings",
-  "Raj Shringi",
-  "550",
-  "not read yet"
-);
+// function addBookToLibrary(book) {
+//   myLibrary.push(book);
+// }
 
-function addBookToLibrary(book) {
+function addBookToLibrary(e) {
+  e.preventDefault();
+  const title = bookForm.querySelector("#title").value;
+  const author = bookForm.querySelector("#author").value;
+  const pages = bookForm.querySelector("#pages").value;
+  const status = bookForm.querySelector("#status").value;
+  const book = new Book(title, author, pages, status);
   myLibrary.push(book);
+  console.log(myLibrary);
+  showBook();
+  bookForm.reset();
 }
 
 function showBook() {
-  tableBody.innerHTML += myLibrary
+  tableBody.innerHTML = myLibrary
     .map((book) => {
       return `<tr>
           <td>${book.title}</td>
@@ -44,8 +44,9 @@ function showBook() {
     .join("");
 }
 
-addBookToLibrary(hobbit);
-addBookToLibrary(atomicHabit);
-addBookToLibrary(theLordOfTheRings);
+// addBookToLibrary(hobbit);
+// addBookToLibrary(atomicHabit);
+// addBookToLibrary(theLordOfTheRings);
 
-showBook();
+bookForm.addEventListener("submit", addBookToLibrary);
+console.log(myLibrary);
