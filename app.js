@@ -60,11 +60,21 @@ function removeBook(e) {
   showBook();
 }
 
+function changeStatus(e) {
+  if (!e.target.matches(".btn-status")) return;
+  const tableRow = e.target.parentNode.parentNode.dataset.index;
+  myLibrary[tableRow].status === "read"
+    ? (myLibrary[tableRow].status = "not read yet")
+    : (myLibrary[tableRow].status = "read");
+  localStorage.setItem("books", JSON.stringify(myLibrary));
+  showBook();
+}
 // addBookToLibrary(hobbit);
 // addBookToLibrary(atomicHabit);
 // addBookToLibrary(theLordOfTheRings);
 
 bookForm.addEventListener("submit", addBookToLibrary);
 tableBody.addEventListener("click", removeBook);
+tableBody.addEventListener("click", changeStatus);
 showBook();
 console.log(myLibrary);
