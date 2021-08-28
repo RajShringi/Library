@@ -1,4 +1,4 @@
-const myLibrary = [];
+const myLibrary = JSON.parse(localStorage.getItem("books")) || [];
 const tableBody = document.querySelector(".table-body");
 const bookForm = document.querySelector(".add-book-form");
 
@@ -28,20 +28,36 @@ function addBookToLibrary(e) {
   myLibrary.push(book);
   console.log(myLibrary);
   showBook();
+  localStorage.setItem("books", JSON.stringify(myLibrary));
   bookForm.reset();
 }
 
 function showBook() {
   tableBody.innerHTML = myLibrary
-    .map((book) => {
-      return `<tr>
-          <td>${book.title}</td>
-          <td>${book.author}</td>
-          <td>${book.pages}</td>
-          <td>${book.status}</td>
+    .map((book, index) => {
+      let i = 0;
+      return `<tr data-index=${index}>
+          <td data-column='column${i}'>${book.title}</td>
+          <td data-column='column${i + 1}'>${book.author}</td>
+          <td data-column='column${i + 2}'>${book.pages}</td>
+          <td data-column='column${i + 3}'>${book.status}</td>
+          <td data-column='column${
+            i + 4
+          }'><button class='btn btn-status'>STATUS</button></td>
+          <td data-column='column${
+            i + 5
+          }'><button class='btn btn-remove'>REMOVE</button></td>
         </tr>`;
     })
     .join("");
+}
+
+function removeBook(e) {
+  if (!e.target.matches(".btn-remove")) return;
+  const tableRow = e.target.parentNode.parentNode.dataset.index;
+  myLibrary.splice(tableRow, 1);
+  localStorage.setItem("books", JSON.stringify(myLibrary));
+  showBook();
 }
 
 // addBookToLibrary(hobbit);
@@ -49,4 +65,6 @@ function showBook() {
 // addBookToLibrary(theLordOfTheRings);
 
 bookForm.addEventListener("submit", addBookToLibrary);
+tableBody.addEventListener("click", removeBook);
+showBook();
 console.log(myLibrary);
