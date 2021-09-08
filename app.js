@@ -1,7 +1,9 @@
 const myLibrary = JSON.parse(localStorage.getItem("books")) || [];
 const tableBody = document.querySelector(".table-body");
 const bookForm = document.querySelector(".add-book-form");
-
+const addbtn = document.querySelector(".btn-add");
+const formContainer = document.querySelector(".form-container");
+const closeBtn = document.querySelector(".btn-close");
 class Book {
   constructor(title, author, pages, status) {
     this.title = title;
@@ -29,6 +31,7 @@ function addBookToLibrary(e) {
   console.log(myLibrary);
   showBook();
   localStorage.setItem("books", JSON.stringify(myLibrary));
+  formContainer.classList.remove("open-form");
   bookForm.reset();
 }
 
@@ -69,6 +72,10 @@ function changeStatus(e) {
   localStorage.setItem("books", JSON.stringify(myLibrary));
   showBook();
 }
+
+function openForm() {
+  formContainer.classList.add("open-form");
+}
 // addBookToLibrary(hobbit);
 // addBookToLibrary(atomicHabit);
 // addBookToLibrary(theLordOfTheRings);
@@ -76,5 +83,9 @@ function changeStatus(e) {
 bookForm.addEventListener("submit", addBookToLibrary);
 tableBody.addEventListener("click", removeBook);
 tableBody.addEventListener("click", changeStatus);
+addbtn.addEventListener("click", openForm);
+closeBtn.addEventListener("click", () => {
+  formContainer.classList.remove("open-form");
+});
 showBook();
 console.log(myLibrary);

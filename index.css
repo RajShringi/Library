@@ -94,17 +94,30 @@ tbody tr:hover {
 
 /* Form */
 .form-container {
-  width: 600px;
-  max-width: 100%;
-  border-radius: 0.5em;
-  padding: 1em;
-  background: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(59, 59, 59, 0.5);
+  display: grid;
+  place-items: center;
+  display: none;
+  z-index: -10;
+}
+
+.open-form {
+  display: inherit;
+  z-index: 10;
 }
 .add-book-form {
+  position: relative;
+  width: clamp(300px, 50%, 600px);
   background: #fff;
   padding: 1em;
   font-size: 0.9rem;
   text-align: left;
+  border-radius: 5px;
 }
 .add-book-form input {
   width: 100%;
@@ -123,7 +136,16 @@ tbody tr:hover {
 .hero {
   background: var(--primary-color);
   width: 100%;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
+
 .hero-heading {
   color: #fff;
+}
+
+.btn-close {
+  position: absolute;
+  top: -10%;
+  left: 96%;
 }
