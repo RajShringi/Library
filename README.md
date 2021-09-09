@@ -11,7 +11,7 @@
 
 ## Overview
 
-- This is a simple Library app in which use can add book, remove book and change its status (read / not read).
+- This is a simple Library app in which user can add book, remove book and change its status (read / not read).
 - Books are store locally using localStorage.
 
 ## Screenshot
